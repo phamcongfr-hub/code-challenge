@@ -21,12 +21,13 @@ We're cool as long as we can view your solution without any pain.
 A modern, production-ready currency swap application built with Vite, featuring real-time price calculations, beautiful glassmorphism UI, and comprehensive validation.
 
 - **Problem Statement:** [src/problem2/readme.md](src/problem2/readme.md)
-- **Solution Documentation:** [src/problem2/SOLUTION.md](src/problem2/SOLUTION.md)
-- **Live Application:**
+- **Solution:** [src/problem2/SOLUTION.md](src/problem2/SOLUTION.md)
+- **Code:**
   - HTML: [src/problem2/index.html](src/problem2/index.html)
   - JavaScript: [src/problem2/script.js](src/problem2/script.js)
   - CSS: [src/problem2/style.css](src/problem2/style.css)
 - **Testing Guide:** [src/problem2/TESTING.md](src/problem2/TESTING.md)
+- **Live Demo:** [https://clinquant-pastelito-b85b0a.netlify.app/](https://clinquant-pastelito-b85b0a.netlify.app/)
 
 **Key Features:**
 - ✨ Built with Vite (Bonus requirement)
