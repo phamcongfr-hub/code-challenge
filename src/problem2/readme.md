@@ -67,6 +67,11 @@ npm run preview
 
 ✅ **Built with Vite** (Bonus requirement)  
 ✅ Real-time token swapping with live exchange rates  
+✅ **Balance Tracking System** with persistent storage  
+✅ **Wallet Balance Overview** with portfolio value display  
+✅ **MAX Button** for quick balance input  
+✅ **Insufficient Balance Validation** with real-time feedback  
+✅ **Balance Updates** after successful swaps  
 ✅ Modern glassmorphism UI with animated gradient background  
 ✅ Fully responsive design (mobile, tablet, desktop)  
 ✅ Comprehensive input validation and error handling  
@@ -79,6 +84,30 @@ npm run preview
 ✅ Smooth animations and transitions  
 ✅ Accessibility features (ARIA labels, keyboard navigation)
 
+## 🎯 Balance Management Features
+
+### 💰 Wallet Balance System
+- **Persistent Storage**: Balances saved in localStorage and persist across sessions
+- **Pre-loaded Demo Balances**: Starts with realistic token amounts (5.5 ETH, 10K USDC, etc.)
+- **Real-time Balance Display**: Shows current balance for each selected token
+- **MAX Button**: Quick-fill input with entire token balance
+- **Balance Validation**: Prevents swaps exceeding available balance
+- **Visual Feedback**: Clear error messages for insufficient funds
+
+### 📊 Wallet Overview Modal
+- View all tokens with current balances
+- See USD value for each token
+- Total portfolio value calculation
+- Price information per token
+- Sorted by value (highest first)
+- Reset balances for testing
+
+### 🔄 Balance Updates
+- Automatic deduction from source token
+- Automatic addition to destination token
+- Accurate calculations using real exchange rates
+- Persistent changes across page refreshes
+
 ## 🛠️ Technical Stack
 
 - **Vite** 5.2.0 - Fast build tool and dev server
@@ -90,26 +119,43 @@ npm run preview
 
 ```
 problem2/
-├── index.html          # Main HTML structure
-├── script.js           # Application logic and interactivity
-├── style.css           # Styles and animations
-├── package.json        # Dependencies and scripts
-├── vite.config.js      # Vite configuration
-├── netlify.toml        # Netlify deployment config
-├── readme.md           # This file
-├── SOLUTION.md         # Detailed solution documentation
-├── TESTING.md          # Testing guide
-└── DEPLOYMENT.md       # Deployment instructions
+├── index.html                    # Main HTML structure
+├── package.json                  # Dependencies and scripts
+├── vite.config.js               # Vite configuration
+├── netlify.toml                 # Netlify deployment config
+├── readme.md                    # This file
+├── SOLUTION.md                  # Detailed solution documentation
+├── BALANCE-FEATURE.md           # Balance tracking feature docs
+├── TESTING.md                   # Testing guide
+└── DEPLOYMENT.md                # Deployment instructions
+└── src/
+    ├── main.jsx                 # Application entry point
+    ├── App.jsx                  # Main app component
+    ├── index.css                # Global styles and animations
+    ├── components/
+    │   ├── SwapCard.jsx         # Main swap interface
+    │   ├── TokenInput.jsx       # Token input with balance
+    │   ├── TokenModal.jsx       # Token selection modal
+    │   ├── Toast.jsx            # Toast notifications
+    │   └── BalanceOverview.jsx  # Wallet balance modal
+    ├── hooks/
+    │   ├── useTokenData.js      # Token data fetching
+    │   └── useBalances.js       # Balance management
+    └── utils/
+        ├── api.js               # API simulation
+        └── helpers.js           # Utility functions
 ```
 
 ## 🎯 Solution Highlights
 
-- **Clean Architecture:** Organized code with separate modules for state, UI, API, and utilities
-- **Error Handling:** Comprehensive validation with helpful error messages
-- **Performance:** Optimized rendering and efficient state management
-- **User Experience:** Intuitive interface with visual feedback for all actions
-- **Code Quality:** Well-documented, maintainable code following best practices
-- **Production Ready:** Includes build optimization, deployment config, and documentation
+- **Clean Architecture:** Organized React components with custom hooks for state management
+- **Balance Management:** Comprehensive balance tracking with localStorage persistence
+- **Error Handling:** Multi-layered validation with helpful error messages
+- **Performance:** Optimized rendering with React hooks and memoization
+- **User Experience:** Intuitive interface with visual feedback and balance awareness
+- **Code Quality:** Well-documented, maintainable code following React best practices
+- **Production Ready:** Includes build optimization, deployment config, and comprehensive documentation
+- **Real-world Features:** Balance tracking, validation, and wallet overview mirror production swap interfaces
 
 ---
 

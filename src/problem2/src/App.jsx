@@ -2,11 +2,19 @@ import { useState, useEffect } from 'react';
 import SwapCard from './components/SwapCard';
 import Toast from './components/Toast';
 import { useTokenData } from './hooks/useTokenData';
+import { useBalances } from './hooks/useBalances';
+import BalanceOverview from './components/BalanceOverview';
+import BalanceEditor from './components/BalanceEditor';
+import HelpModal from './components/HelpModal';
 
 function App() {
   const { tokens, prices, loading, error } = useTokenData();
+  const balanceManager = useBalances();
   const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
+  const [showBalanceOverview, setShowBalanceOverview] = useState(false);
+  const [showBalanceEditor, setShowBalanceEditor] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('theme', theme);
@@ -92,24 +100,95 @@ function App() {
                 theme === 'dark' ? 'text-white' : 'text-slate-900'
               }`}>SwapFlow</h1>
             </div>
-            <button
-              onClick={toggleTheme}
-              className={`p-3 rounded-xl transition-colors ${
-                theme === 'dark'
-                  ? 'bg-slate-800 hover:bg-slate-700 border border-slate-700'
-                  : 'bg-white hover:bg-gray-100 border border-gray-300'
-              }`}
-              aria-label="Toggle theme"
-              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            >
-              <span className="text-2xl">{theme === 'dark' ? '☀️' : '🌙'}</span>
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setShowHelp(true)}
+                className={`p-2 rounded-xl transition-colors border ${
+                  theme === 'dark'
+                    ? 'bg-slate-800 hover:bg-slate-700 border-slate-700 text-white'
+                    : 'bg-white hover:bg-gray-100 border-gray-300 text-slate-900'
+                }`}
+                title="How to use"
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </button>
+              <button
+                onClick={() => setShowBalanceOverview(!showBalanceOverview)}
+                className={`p-2 rounded-xl transition-colors border ${
+                  theme === 'dark'
+                    ? 'bg-slate-800 hover:bg-slate-700 border-slate-700 text-white'
+                    : 'bg-white hover:bg-gray-100 border-gray-300 text-slate-900'
+                }`}
+                title="View wallet"
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                </svg>
+              </button>
+              <button
+                onClick={toggleTheme}
+                className={`p-2 rounded-xl transition-colors border ${
+                  theme === 'dark'
+                    ? 'bg-slate-800 hover:bg-slate-700 border-slate-700 text-white'
+                    : 'bg-white hover:bg-gray-100 border-gray-300 text-slate-900'
+                }`}
+                aria-label="Toggle theme"
+                title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={theme === 'dark' ? 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z' : 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z'} />
+                </svg>
+              </button>
+            </div>
           </div>
         </header>
 
-        {/* Swap Card */}
+        {showHelp && (
+          <HelpModal onClose={() => setShowHelp(false)} theme={theme} />
+        )}
+
+        {showBalanceOverview && (
+          <BalanceOverview
+            tokens={tokens}
+            prices={prices}
+            balances={balanceManager.balances}
+            onClose={() => setShowBalanceOverview(false)}
+            onReset={() => {
+              balanceManager.resetBalances();
+              showToast('Balances reset to defaults', 'success');
+            }}
+            onEdit={() => {
+              setShowBalanceOverview(false);
+              setShowBalanceEditor(true);
+            }}
+            theme={theme}
+          />
+        )}
+
+        {showBalanceEditor && (
+          <BalanceEditor
+            tokens={tokens}
+            prices={prices}
+            balances={balanceManager.balances}
+            onUpdate={(newBalances) => {
+              balanceManager.setBalances(newBalances);
+              showToast('Balances updated successfully', 'success');
+            }}
+            onClose={() => setShowBalanceEditor(false)}
+            theme={theme}
+          />
+        )}
+
         <div className="flex-1 flex items-center justify-center w-full">
-          <SwapCard tokens={tokens} prices={prices} onShowToast={showToast} theme={theme} />
+          <SwapCard 
+            tokens={tokens} 
+            prices={prices} 
+            onShowToast={showToast} 
+            theme={theme}
+            balanceManager={balanceManager}
+          />
         </div>
 
         {/* Footer */}
