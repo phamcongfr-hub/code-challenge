@@ -4,7 +4,7 @@ import TokenModal from './TokenModal';
 import { validateDecimalInput, parseInputNumber, formatNumber } from '../utils/helpers';
 import { simulateSwap } from '../utils/api';
 
-export default function SwapCard({ tokens, prices, onShowToast }) {
+export default function SwapCard({ tokens, prices, onShowToast, theme = 'dark' }) {
   const [fromToken, setFromToken] = useState(null);
   const [toToken, setToToken] = useState(null);
   const [fromAmount, setFromAmount] = useState('');
