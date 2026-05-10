@@ -113,7 +113,11 @@ export default function SwapCard({ tokens, prices, onShowToast }) {
   return (
     <>
       <div className="w-full max-w-lg">
-        <div className="bg-slate-900 rounded-3xl p-6 shadow-2xl border border-slate-700">
+        <div className={`rounded-3xl p-6 shadow-2xl border transition-colors ${
+          theme === 'dark'
+            ? 'bg-slate-900 border-slate-700'
+            : 'bg-white border-gray-200'
+        }`}>
           <form onSubmit={handleSwap} className="space-y-0">
             {/* From Token */}
             <TokenInput
@@ -125,6 +129,7 @@ export default function SwapCard({ tokens, prices, onShowToast }) {
               usdValue={fromUsdValue}
               disabled={!fromToken}
               prices={prices}
+              theme={theme}
             />
 
             {errorMessage && (
@@ -136,9 +141,13 @@ export default function SwapCard({ tokens, prices, onShowToast }) {
               <button
                 type="button"
                 onClick={handleFlip}
-                className="bg-slate-700 hover:bg-slate-600 p-3 rounded-xl border-4 border-slate-900 transition-all duration-200 hover:rotate-180"
+                className={`p-3 rounded-xl border-4 transition-all duration-200 hover:rotate-180 ${
+                  theme === 'dark'
+                    ? 'bg-slate-700 hover:bg-slate-600 border-slate-900'
+                    : 'bg-gray-100 hover:bg-gray-200 border-white'
+                }`}
               >
-                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className={`w-6 h-6 ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
                 </svg>
               </button>
@@ -153,14 +162,19 @@ export default function SwapCard({ tokens, prices, onShowToast }) {
               usdValue={toUsdValue}
               readOnly
               prices={prices}
+              theme={theme}
             />
 
             {/* Exchange Info */}
             {exchangeRate && (
-              <div className="mt-4 p-4 bg-slate-800 rounded-xl border border-slate-700">
+              <div className={`mt-4 p-4 rounded-xl border ${
+                theme === 'dark'
+                  ? 'bg-slate-800 border-slate-700'
+                  : 'bg-gray-50 border-gray-200'
+              }`}>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-slate-400">Exchange Rate</span>
-                  <span className="text-white font-medium">{exchangeRate}</span>
+                  <span className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>Exchange Rate</span>
+                  <span className={`font-medium ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>{exchangeRate}</span>
                 </div>
               </div>
             )}
@@ -191,6 +205,7 @@ export default function SwapCard({ tokens, prices, onShowToast }) {
         prices={prices}
         onSelect={setFromToken}
         title="Select From Token"
+        theme={theme}
       />
 
       <TokenModal
@@ -200,6 +215,7 @@ export default function SwapCard({ tokens, prices, onShowToast }) {
         prices={prices}
         onSelect={setToToken}
         title="Select To Token"
+        theme={theme}
       />
     </>
   );

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getTokenIcon, getTokenPlaceholder, formatNumber } from '../utils/helpers';
 
-export default function TokenModal({ isOpen, onClose, tokens, prices, onSelect, title = "Select Token" }) {
+export default function TokenModal({ isOpen, onClose, tokens, prices, onSelect, title = "Select Token", theme = 'dark' }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredTokens, setFilteredTokens] = useState(tokens);
 
@@ -35,13 +35,21 @@ export default function TokenModal({ isOpen, onClose, tokens, prices, onSelect, 
       />
       
       {/* Modal */}
-      <div className="relative bg-slate-900 rounded-3xl w-full max-w-md mx-4 shadow-2xl border border-slate-700 animate-scale-in">
+      <div className={`relative rounded-3xl w-full max-w-md mx-4 shadow-2xl border animate-scale-in ${
+        theme === 'dark'
+          ? 'bg-slate-900 border-slate-700'
+          : 'bg-white border-gray-200'
+      }`}>
         {/* Header */}
-        <div className="p-6 border-b border-slate-700 flex items-center justify-between">
-          <h3 className="text-xl font-semibold text-white">{title}</h3>
+        <div className={`p-6 border-b flex items-center justify-between ${
+          theme === 'dark' ? 'border-slate-700' : 'border-gray-200'
+        }`}>
+          <h3 className={`text-xl font-semibold ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>{title}</h3>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-white transition-colors p-2"
+            className={`transition-colors p-2 ${
+              theme === 'dark' ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900'
+            }`}
             aria-label="Close modal"
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -58,14 +66,18 @@ export default function TokenModal({ isOpen, onClose, tokens, prices, onSelect, 
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             autoFocus
-            className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+            className={`w-full border rounded-xl px-4 py-3 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all ${
+              theme === 'dark'
+                ? 'bg-slate-800 border-slate-700 text-white'
+                : 'bg-gray-50 border-gray-300 text-slate-900'
+            }`}
           />
         </div>
 
         {/* Token List */}
         <div className="max-h-[400px] overflow-y-auto px-4 pb-4">
           {filteredTokens.length === 0 ? (
-            <div className="text-center py-8 text-slate-400">
+            <div className={`text-center py-8 ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
               No tokens found
             </div>
           ) : (
@@ -74,7 +86,11 @@ export default function TokenModal({ isOpen, onClose, tokens, prices, onSelect, 
                 <button
                   key={token.currency}
                   onClick={() => handleTokenClick(token)}
-                  className="w-full flex items-center gap-4 p-4 rounded-xl bg-slate-800 hover:bg-slate-700 transition-all duration-200 border border-transparent hover:border-purple-500"
+                  className={`w-full flex items-center gap-4 p-4 rounded-xl transition-all duration-200 border ${
+                    theme === 'dark'
+                      ? 'bg-slate-800 hover:bg-slate-700 border-transparent hover:border-purple-500'
+                      : 'bg-gray-50 hover:bg-gray-100 border-transparent hover:border-purple-500'
+                  }`}
                 >
                   <img
                     src={getTokenIcon(token.currency)}
@@ -99,3 +115,4 @@ export default function TokenModal({ isOpen, onClose, tokens, prices, onSelect, 
     </div>
   );
 }
+

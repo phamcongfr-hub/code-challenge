@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SwapCard from './components/SwapCard';
 import Toast from './components/Toast';
 import { useTokenData } from './hooks/useTokenData';
@@ -6,6 +6,16 @@ import { useTokenData } from './hooks/useTokenData';
 function App() {
   const { tokens, prices, loading, error } = useTokenData();
   const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme);
+    document.documentElement.classList.toggle('light', theme === 'light');
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
 
   const showToast = (message, type = 'success') => {
     setToast({ show: true, message, type });
@@ -44,12 +54,22 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 relative overflow-hidden">
+    <div className={`min-h-screen relative overflow-hidden transition-colors duration-300 ${
+      theme === 'dark'
+        ? 'bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950'
+        : 'bg-gradient-to-br from-slate-50 via-purple-50 to-slate-100'
+    }`}>
       {/* Animated Background Blobs */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 -left-4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute top-0 -right-4 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+        <div className={`absolute top-0 -left-4 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-blob ${
+          theme === 'dark' ? 'bg-purple-500 opacity-20' : 'bg-purple-400 opacity-30'
+        }`}></div>
+        <div className={`absolute top-0 -right-4 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000 ${
+          theme === 'dark' ? 'bg-pink-500 opacity-20' : 'bg-pink-400 opacity-30'
+        }`}></div>
+        <div className={`absolute -bottom-8 left-20 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000 ${
+          theme === 'dark' ? 'bg-blue-500 opacity-20' : 'bg-blue-400 opacity-30'
+        }`}></div>
       </div>
 
       {/* Main Content */}
@@ -68,25 +88,34 @@ function App() {
                   </linearGradient>
                 </defs>
               </svg>
-              <h1 className="text-3xl font-bold text-white">SwapFlow</h1>
+              <h1 className={`text-3xl font-bold ${
+                theme === 'dark' ? 'text-white' : 'text-slate-900'
+              }`}>SwapFlow</h1>
             </div>
             <button
-              className="p-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-colors"
-              aria-label="Theme toggle (coming soon)"
-              title="Theme toggle"
+              onClick={toggleTheme}
+              className={`p-3 rounded-xl transition-colors ${
+                theme === 'dark'
+                  ? 'bg-slate-800 hover:bg-slate-700 border border-slate-700'
+                  : 'bg-white hover:bg-gray-100 border border-gray-300'
+              }`}
+              aria-label="Toggle theme"
+              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             >
-              <span className="text-2xl">🌙</span>
+              <span className="text-2xl">{theme === 'dark' ? '☀️' : '🌙'}</span>
             </button>
           </div>
         </header>
 
         {/* Swap Card */}
         <div className="flex-1 flex items-center justify-center w-full">
-          <SwapCard tokens={tokens} prices={prices} onShowToast={showToast} />
+          <SwapCard tokens={tokens} prices={prices} onShowToast={showToast} theme={theme} />
         </div>
 
         {/* Footer */}
-        <footer className="w-full max-w-lg mt-8 text-center text-slate-400 text-sm">
+        <footer className={`w-full max-w-lg mt-8 text-center text-sm ${
+          theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
+        }`}>
           <p>Built with Vite + React + Tailwind CSS</p>
         </footer>
       </div>
