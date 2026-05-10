@@ -15,3 +15,38 @@ We're cool as long as we can view your solution without any pain.
 - **Solution:** [src/problem1/SOLUTION.md](src/problem1/SOLUTION.md)
 - **Code:** [src/problem1/solution.js](src/problem1/solution.js)
 - **Tests:** [src/problem1/test.js](src/problem1/test.js)
+
+### Problem 2: SwapFlow - Currency Exchange Form
+
+A modern, production-ready currency swap application built with Vite, featuring real-time price calculations, beautiful glassmorphism UI, and comprehensive validation.
+
+- **Problem Statement:** [src/problem2/readme.md](src/problem2/readme.md)
+- **Solution Documentation:** [src/problem2/SOLUTION.md](src/problem2/SOLUTION.md)
+- **Live Application:**
+  - HTML: [src/problem2/index.html](src/problem2/index.html)
+  - JavaScript: [src/problem2/script.js](src/problem2/script.js)
+  - CSS: [src/problem2/style.css](src/problem2/style.css)
+- **Testing Guide:** [src/problem2/TESTING.md](src/problem2/TESTING.md)
+
+**Key Features:**
+- ✨ Built with Vite (Bonus requirement)
+- 🔄 Real-time token swapping with live price data
+- 🎨 Modern glassmorphism UI with animated background
+- 📱 Fully responsive design (mobile, tablet, desktop)
+- ✅ Comprehensive input validation and error handling
+- 🔍 Token search functionality
+- ⚡ Fast performance and smooth animations
+
+**Tech Stack:** Vite, Vanilla JavaScript (ES6+), CSS3, HTML5
+
+**To run locally:**
+```bash
+cd src/problem2
+npm install
+npm run dev
+```
+
+**To build for production:**
+```bash
+npm run build
+```

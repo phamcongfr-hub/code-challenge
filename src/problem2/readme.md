@@ -1,4 +1,19 @@
-# Problem 2: Fancy Form
+# Problem 2: SwapFlow - Fancy Currency Exchange Form
+
+## 📖 Overview
+
+**SwapFlow** is a modern, production-ready cryptocurrency exchange interface that allows users to swap between different tokens with real-time price calculations. The application features a beautiful glassmorphism design, comprehensive validation, and smooth user interactions.
+
+This project demonstrates advanced frontend development skills including:
+- Modern JavaScript (ES6+) with modular architecture
+- Real-time API integration and data handling
+- Advanced CSS with animations and responsive design
+- User experience design and interaction patterns
+- Production-ready code quality and error handling
+
+**Live Demo:** [Deploy to see it in action!](DEPLOYMENT.md)
+
+---
 
 # Task
 
@@ -23,3 +38,81 @@ Please submit your solution using the files provided in the skeletal repo, inclu
 💡 Hint: feel free to simulate or mock interactions with a backend service, e.g. implement a loading indicator with a timeout delay for the submit button is good enough.
 
 </aside>
+
+---
+
+## 🚀 Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server (opens automatically at http://localhost:3000)
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## 📚 Documentation
+
+- **[SOLUTION.md](SOLUTION.md)** - Complete solution documentation and features
+- **[TESTING.md](TESTING.md)** - Testing guide and validation scenarios
+- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Netlify deployment guide
+
+## ✨ Key Features Implemented
+
+✅ **Built with Vite** (Bonus requirement)  
+✅ Real-time token swapping with live exchange rates  
+✅ Modern glassmorphism UI with animated gradient background  
+✅ Fully responsive design (mobile, tablet, desktop)  
+✅ Comprehensive input validation and error handling  
+✅ Token search with instant filtering  
+✅ USD value display for both tokens  
+✅ Exchange rate information  
+✅ Swap direction flip button  
+✅ Loading states with simulated backend delay  
+✅ Toast notifications for user feedback  
+✅ Smooth animations and transitions  
+✅ Accessibility features (ARIA labels, keyboard navigation)
+
+## 🛠️ Technical Stack
+
+- **Vite** 5.2.0 - Fast build tool and dev server
+- **Vanilla JavaScript** (ES6+) - Pure JavaScript, no framework dependencies
+- **CSS3** - Modern CSS with custom properties, animations, and responsive design
+- **HTML5** - Semantic markup with accessibility features
+
+## 📁 Project Structure
+
+```
+problem2/
+├── index.html          # Main HTML structure
+├── script.js           # Application logic and interactivity
+├── style.css           # Styles and animations
+├── package.json        # Dependencies and scripts
+├── vite.config.js      # Vite configuration
+├── netlify.toml        # Netlify deployment config
+├── readme.md           # This file
+├── SOLUTION.md         # Detailed solution documentation
+├── TESTING.md          # Testing guide
+└── DEPLOYMENT.md       # Deployment instructions
+```
+
+## 🎯 Solution Highlights
+
+- **Clean Architecture:** Organized code with separate modules for state, UI, API, and utilities
+- **Error Handling:** Comprehensive validation with helpful error messages
+- **Performance:** Optimized rendering and efficient state management
+- **User Experience:** Intuitive interface with visual feedback for all actions
+- **Code Quality:** Well-documented, maintainable code following best practices
+- **Production Ready:** Includes build optimization, deployment config, and documentation
+
+---
+
+**Author:** Built as part of 99Tech Code Challenge #1  
+**Tech Stack:** Vite + Vanilla JavaScript + CSS3  
+**Status:** ✅ Production Ready
