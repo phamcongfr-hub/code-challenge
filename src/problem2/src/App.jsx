@@ -70,6 +70,13 @@ function App() {
               </svg>
               <h1 className="text-3xl font-bold text-white">SwapFlow</h1>
             </div>
+            <button
+              className="p-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-colors"
+              aria-label="Theme toggle (coming soon)"
+              title="Theme toggle"
+            >
+              <span className="text-2xl">🌙</span>
+            </button>
           </div>
         </header>
 

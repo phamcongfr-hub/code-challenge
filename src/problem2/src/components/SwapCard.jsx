@@ -114,7 +114,7 @@ export default function SwapCard({ tokens, prices, onShowToast }) {
     <>
       <div className="w-full max-w-lg">
         <div className="bg-slate-900 rounded-3xl p-6 shadow-2xl border border-slate-700">
-          <form onSubmit={handleSwap}>
+          <form onSubmit={handleSwap} className="space-y-0">
             {/* From Token */}
             <TokenInput
               label="From"
