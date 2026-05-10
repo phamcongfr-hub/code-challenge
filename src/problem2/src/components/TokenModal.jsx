@@ -101,8 +101,8 @@ export default function TokenModal({ isOpen, onClose, tokens, prices, onSelect, 
                     }}
                   />
                   <div className="flex-1 text-left">
-                    <div className="font-semibold text-white">{token.currency}</div>
-                    <div className="text-sm text-slate-400">
+                    <div className={`font-semibold ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>{token.currency}</div>
+                    <div className={`text-sm ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
                       ${formatNumber(prices[token.currency] || 0)}
                     </div>
                   </div>

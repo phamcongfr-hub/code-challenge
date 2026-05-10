@@ -40,7 +40,7 @@ export default function TokenInput({
         <button
           type="button"
           onClick={onTokenSelect}
-          className={`flex items-center gap-2 px-4 py-3 rounded-xl transition-all duration-200 border flex-shrink-0 ${
+          className={`flex items-center gap-2 px-4 py-3 rounded-xl transition-all duration-200 border flex-shrink-0 min-w-[140px] ${
             theme === 'dark'
               ? 'bg-slate-700 hover:bg-slate-600 border-slate-600 hover:border-purple-500'
               : 'bg-white hover:bg-gray-100 border-gray-300 hover:border-purple-500'
