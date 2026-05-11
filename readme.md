@@ -51,3 +51,24 @@ npm run dev
 ```bash
 npm run build
 ```
+
+### Problem 3: Messy React - Code Review & Refactoring
+
+A comprehensive code review of a React TypeScript component, identifying computational inefficiencies, anti-patterns, and logic bugs with detailed explanations and a production-ready refactored solution.
+
+- **Problem Statement:** [src/problem3/readme.md](src/problem3/readme.md)
+- **Solution:** [src/problem3/solution.md](src/problem3/solution.md)
+
+**Issues Identified:**
+- 🔴 **14 distinct issues** spanning React Hooks misuse, runtime crashes, and TypeScript gaps
+- 🐛 **Critical bugs:** ReferenceError crashes, inverted filter logic, NaN in UI
+- ⚡ **Performance:** Unnecessary re-renders, redundant computations, unstable keys
+- 📘 **Type safety:** Missing interfaces, `any` types, undeclared properties
+
+**Categories:**
+- React & Hooks Issues (5 issues)
+- Logic Bugs (4 issues)
+- TypeScript Issues (2 issues)
+- Dead Code & API Clarity (3 issues)
+
+**Analysis includes:** Problematic code snippets, root cause explanations, correct fixes, and a complete refactored component following React best practices.
